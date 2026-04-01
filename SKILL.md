@@ -5,7 +5,7 @@ description: >-
   when needed: 「YYYY年M月D日」+「工作内容：」+ numbered items with title and
   paragraphs. Defaults to five items and today’s date when unspecified. Use when
   the user writes or mentions 日报、工作日报、今日总结、工作内容, asks to
-  summarize today’s work, or ties the report to Cursor questions and code changes.
+  summarize today’s work, or ties the report to IDE/AI assistant chat and code changes.
   When code was written today, related items must summarize diffs, stack choices,
   and what the code does.
 ---
@@ -18,11 +18,11 @@ description: >-
 - 用户提供零散要点，需要整理成带序号、每条含「短标题 + 说明段落」的长文。
 - 用户希望结合 **本对话里问过的问题、讨论过的方案** 和 **项目里写过的代码** 一起归纳成日报。
 
-## 素材来源（可与 Cursor 对话 / 代码结合）
+## 素材来源（可与 IDE 内 AI 助手对话 / 代码结合）
 
 写日报时 **优先** 从以下来源提炼「工作内容」，下条读文件或 `git` 前可先基于已有对话与附件：
 
-1. **当前对话**：用户提过的问题、选型讨论、结论、待办；用 **业务语言** 概括，不要逐句复述聊天。
+1. **当前对话**（含 VS Code、Cursor、Windsurf、Codex 等任意 Agent/助手会话）：用户提过的问题、选型讨论、结论、待办；用 **业务语言** 概括，不要逐句复述聊天。
 2. **代码与仓库**（用户未禁用时）：
    - 用户 **@ 文件/文件夹** 或明确路径 → 可阅读相关文件，从 **模块职责、关键改动意图** 概括进日报（类名/文件名可择要出现，不必贴代码）。
    - 用户说「按今天改动」「结合仓库」→ 可用 `git diff` / `git log`（今日范围）或最近编辑文件辅助归纳；若仓库与对话无关，以对话为准并 **不强行编造** 与代码的关联。
@@ -57,6 +57,14 @@ description: >-
 - 模板与版式说明：[reference.md](reference.md)
 - 示例（含段落体例）：[examples.md](examples.md)
 
-## 在 Cursor 中的位置
+## 安装位置（各编辑器）
 
-本 skill 位于用户 skill 目录时会被 Cursor 加载。若你只在仓库里放了副本，请将整个 `daily-report` 文件夹复制或链接到 `~/.cursor/skills/daily-report`。
+本 skill 需放在 **你所用工具的技能目录** 下才会被加载；仓库里的副本仅作版本管理，请按需同步到本地技能路径，例如：
+
+| 环境 | 常见路径（将本仓库的 `daily-report` 文件夹整份放入或符号链接） |
+|------|----------------------------------------------------------------|
+| Cursor | `~/.cursor/skills/daily-report` |
+| OpenAI Codex CLI / 使用 `~/.codex/skills` 的工具 | `~/.codex/skills/daily-report` |
+| 其他 Agent 编辑器 | 以该工具的文档为准（多为用户目录下的 `skills` 子目录） |
+
+VS Code 若通过扩展或配置挂载技能目录，把同名文件夹放到扩展要求的 `skills` 路径即可；核心仍是 **一份 `SKILL.md` + 同目录资源**，与具体品牌无关。
