@@ -1,1 +1,1 @@
-##使用cursor根据上下文以及vibe coding内容写一份向上管理的日报
+使用各种ide中的agent根据上下文以及vibe coding内容写一份向上管理的日报
